@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .header {
+            background-color: #2d5c6a;
+            padding: 15px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .header nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #002984;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #001f5c;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>TWITTER</h1>
+    <nav>
+        <a href="tweets.html">Tweets</a>
+        <a href="login.html">Login</a>
+        <a href="index.html">Register</a>
+    </nav>
+</div>
+<form id="login-form">
+    <label for="email">EMAIL :</label>
+    <input type="email" id="email" required>
+
+    <label for="password">PASSWORD :</label>
+    <input type="password" id="password" required>
+
+    <button type="submit">SIGN IN</button>
+</form>
+
+<script>
+    document.getElementById('login-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+
+        const user = users.find(user => user.email === email && user.password === password);
+
+        if (user) {
+            alert('Login successful!');
+            localStorage.setItem('loggedInUser', JSON.stringify(user));
+            window.location.href = 'profile.html';
+        } else {
+            alert('Invalid email or password!');
+        }
+    });
+</script>
+</body>
+</html>

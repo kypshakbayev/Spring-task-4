@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .header {
+            background-color: #2d5c6a;
+            padding: 15px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .header nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        .header nav a:hover {
+            text-decoration: underline;
+        }
+        .profile {
+            margin-top: 50px;
+        }
+        .profile-info {
+            display: block;
+            margin: 0 auto;
+            text-align: left;
+            max-width: 500px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .profile-info div {
+            margin-bottom: 15px;
+        }
+        .profile-info div label {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .profile-info div p {
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>TWITTER</h1>
+    <nav>
+        <a href="tweets.html">Tweets</a>
+        <a href="login.html">Login</a>
+        <a href="index.html">Register</a>
+    </nav>
+</div>
+
+<div class="profile">
+    <h1 id="welcome-message">WELCOME</h1>
+    <div class="profile-info">
+        <div>
+            <label for="email">Email:</label>
+            <p id="email-info"></p>
+        </div>
+        <div>
+            <label for="fullname">Full Name:</label>
+            <p id="fullname-info"></p>
+        </div>
+        <div>
+            <label for="country">Country:</label>
+            <p id="country-info"></p>
+        </div>
+        <div>
+            <label for="birthdate">Birthdate:</label>
+            <p id="birthdate-info"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const user = JSON.parse(localStorage.getItem('loggedInUser'));
+
+    if (user) {
+        document.getElementById('welcome-message').innerText = `WELCOME, ${user.fullname}`;
+        document.getElementById('email-info').innerText = `${user.email}`;
+        document.getElementById('fullname-info').innerText = `${user.fullname}`;
+        document.getElementById('country-info').innerText = `${user.country}`;
+        document.getElementById('birthdate-info').innerText = `${user.birthdate}`;
+    } else {
+        alert('No user data found. Please log in again.');
+        window.location.href = 'login.html';
+    }
+</script>
+</body>
+</html>
